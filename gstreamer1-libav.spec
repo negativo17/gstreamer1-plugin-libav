@@ -74,5 +74,5 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
-* Mon Jun 13 2016 Simone Caronni <negativo17@gmail.com> - 1.8.2-1
+* Mon Jun 13 2016 Simone Caronni <negativo17@gmail.com> - 1:1.8.2-1
 - First build.
