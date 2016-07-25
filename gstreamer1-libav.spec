@@ -1,6 +1,6 @@
 Name:       gstreamer1-libav
 Version:    1.8.2
-Release:    2%{?dist}
+Release:    3%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
@@ -35,7 +35,7 @@ Libav library code. It contains many popular decoders and encoders.
 
 %package devel-docs
 Summary:    Development documentation for the GStreamer Libav plug-in
-Requires:   %{name} = %{version}-%{release}
+Requires:   %{name} = %{?epoch}:%{version}-%{release}
 BuildArch:  noarch
 
 %description devel-docs
@@ -74,6 +74,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Mon Jul 25 2016 Simone Caronni <negativo17@gmail.com> - 1:1.8.2-3
+- Fix devel-docs requirements.
+
 * Thu Jul 21 2016 Simone Caronni <negativo17@gmail.com> - 1:1.8.2-2
 - Rebuild for FFMpeg 3.1.1.
 
