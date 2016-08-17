@@ -15,11 +15,11 @@ BuildRequires:  gstreamer1-devel >= 1.9.1
 BuildRequires:  gstreamer1-plugins-base-devel >= 1.9.1
 BuildRequires:  libtool
 BuildRequires:  orc-devel >= 0.4.16
-BuildRequires:  pkgconfig(libavfilter) >= 3.0.2
-BuildRequires:  pkgconfig(libavformat) >= 3.0.2
-BuildRequires:  pkgconfig(libavcodec) >= 3.0.2
-BuildRequires:  pkgconfig(libavutil) >= 3.0.2
-BuildRequires:  pkgconfig(libswscale) >= 3.0.2
+BuildRequires:  pkgconfig(libavfilter)
+BuildRequires:  pkgconfig(libavformat)
+BuildRequires:  pkgconfig(libavcodec)
+BuildRequires:  pkgconfig(libavutil)
+BuildRequires:  pkgconfig(libswscale)
 
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
@@ -49,6 +49,7 @@ plug-in.
 %setup -q -n gst-libav-%{version}
 
 %build
+export CFLAGS="%{optflags} -Wno-deprecated-declarations"
 autoreconf -vif
 %configure \
     --disable-dependency-tracking \
@@ -57,10 +58,10 @@ autoreconf -vif
     --with-package-name="Fedora GStreamer-libav package" \
     --with-package-origin="http://negativo17.org" \
     --with-system-libav
-make %{?_smp_mflags} V=1
+make %{?_smp_mflags}
 
 %install
-%make_install V=1
+%make_install
 find %{buildroot} -name "*.la" -delete
 
 %files
