@@ -1,6 +1,6 @@
 Name:       gstreamer1-libav
-Version:    1.9.2
-Release:    2%{?dist}
+Version:    1.10.0
+Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
@@ -11,15 +11,15 @@ Source0:    http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  bzip2-devel
-BuildRequires:  gstreamer1-devel >= 1.9.1
-BuildRequires:  gstreamer1-plugins-base-devel >= 1.9.1
+BuildRequires:  gstreamer1-devel >= 1.10.0
+BuildRequires:  gstreamer1-plugins-base-devel >= 1.10.0
 BuildRequires:  libtool
 BuildRequires:  orc-devel >= 0.4.16
-BuildRequires:  pkgconfig(libavfilter)
-BuildRequires:  pkgconfig(libavformat)
-BuildRequires:  pkgconfig(libavcodec)
-BuildRequires:  pkgconfig(libavutil)
-BuildRequires:  pkgconfig(libswscale)
+BuildRequires:  pkgconfig(libavfilter) >= 3.2
+BuildRequires:  pkgconfig(libavformat) >= 3.2
+BuildRequires:  pkgconfig(libavcodec) >= 3.2
+BuildRequires:  pkgconfig(libavutil) >= 3.2
+BuildRequires:  pkgconfig(libswscale) >= 3.2
 
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
@@ -75,6 +75,10 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Thu Nov 10 2016 Simone Caronni <negativo17@gmail.com> - 1:1.10.0-1
+- Update to 1.10.0.
+- Requires FFmpeg >= 3.2.
+
 * Wed Nov 09 2016 Simone Caronni <negativo17@gmail.com> - 1:1.9.2-2
 - Rebuild for FFmpeg update.
 
