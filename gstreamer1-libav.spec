@@ -8,15 +8,7 @@ URL:        https://gstreamer.freedesktop.org/modules/gst-libav.html
 
 Source0:    http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
 
-Patch0:     0001-Only-use-AV_CODEC_ID_WRAPPED_AVFRAME-on-new-enough-l.patch
-Patch1:     0002-libav-Update-to-ffmpeg-n3.0.3.patch
-Patch2:     0003-av-Cast-AVContext-bit_rate-to-a-guint-before-passing.patch
-Patch3:     0004-libav-Update-to-ffmpeg-n3.0.4.patch
-Patch4:     0005-avaudenc-dec-Ignore-S64BE-LE-pseudo-codecs.patch
-Patch5:     0006-avaudenc-dec-Allow-compilation-against-ffmpeg-3.2-ag.patch
-Patch6:     0007-configure-fix-target_os-when-cross-compiling-for-arm.patch
-Patch7:     0008-avvidenc-dec-Disable-more-hardware-encoder-decoders.patch
-Patch8:     0009-avmux-blacklist-fifo-plugin.patch
+Patch0:     %{name}-1.8.3.patch
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -56,7 +48,7 @@ This package contains the development documentation for the GStreamer Libav
 plug-in.
 
 %prep
-%autosetup -n gst-libav-%{version}
+%autosetup -p1 -n gst-libav-%{version}
 
 %build
 autoreconf -vif
