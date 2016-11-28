@@ -1,5 +1,5 @@
 Name:       gstreamer1-libav
-Version:    1.10.0
+Version:    1.10.1
 Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
@@ -11,8 +11,8 @@ Source0:    http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  bzip2-devel
-BuildRequires:  gstreamer1-devel >= 1.10.0
-BuildRequires:  gstreamer1-plugins-base-devel >= 1.10.0
+BuildRequires:  gstreamer1-devel >= 1.10.1
+BuildRequires:  gstreamer1-plugins-base-devel >= 1.10.1
 BuildRequires:  libtool
 BuildRequires:  orc-devel >= 0.4.16
 BuildRequires:  pkgconfig(libavfilter) >= 3.2
@@ -75,6 +75,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Mon Nov 28 2016 Simone Caronni <negativo17@gmail.com> - 1:1.10.1-1
+- Update to 1.10.1.
+
 * Thu Nov 10 2016 Simone Caronni <negativo17@gmail.com> - 1:1.10.0-1
 - Update to 1.10.0.
 - Requires FFmpeg >= 3.2.
