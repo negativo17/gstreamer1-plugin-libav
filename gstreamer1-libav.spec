@@ -1,5 +1,5 @@
 Name:       gstreamer1-libav
-Version:    1.10.2
+Version:    1.10.3
 Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
@@ -75,6 +75,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Tue Jan 31 2017 Simone Caronni <negativo17@gmail.com> - 1:1.10.3-1
+- Update to 1.10.3.
+
 * Mon Dec 05 2016 Simone Caronni <negativo17@gmail.com> - 1:1.10.2-1
 - Update to 1.10.2.
 
