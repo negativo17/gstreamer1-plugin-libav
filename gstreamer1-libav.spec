@@ -11,8 +11,8 @@ Source0:    http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  bzip2-devel
-BuildRequires:  gstreamer1-devel >= 1.10.2
-BuildRequires:  gstreamer1-plugins-base-devel >= 1.10.2
+BuildRequires:  gstreamer1-devel >= %{version}
+BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  libtool
 BuildRequires:  orc-devel >= 0.4.16
 BuildRequires:  pkgconfig(libavfilter) >= 3.2
