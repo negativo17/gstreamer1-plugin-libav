@@ -1,6 +1,6 @@
 Name:       gstreamer1-libav
-Version:    1.4.5
-Release:    3%{?dist}
+Version:    1.10.4
+Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
@@ -11,16 +11,15 @@ Source0:    http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  bzip2-devel
-BuildRequires:  compat-ffmpeg-devel
-BuildRequires:  gstreamer1-devel >= 1.4.0
-BuildRequires:  gstreamer1-plugins-base-devel >= 1.4.0
+BuildRequires:  gstreamer1-devel >= %{version}
+BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  libtool
 BuildRequires:  orc-devel >= 0.4.16
-#BuildRequires:  pkgconfig(libavfilter)
-#BuildRequires:  pkgconfig(libavformat)
-#BuildRequires:  pkgconfig(libavcodec)
-#BuildRequires:  pkgconfig(libavutil)
-#BuildRequires:  pkgconfig(libswscale)
+BuildRequires:  pkgconfig(libavfilter) >= 6
+BuildRequires:  pkgconfig(libavformat) >= 57
+BuildRequires:  pkgconfig(libavcodec) >= 57
+BuildRequires:  pkgconfig(libavutil) >= 55
+BuildRequires:  pkgconfig(libswscale) >= 4.6
 
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
@@ -47,8 +46,10 @@ plug-in.
 
 %prep
 %setup -q -n gst-libav-%{version}
+sed -i -e 's/-Wno-portability 1.14/-Wno-portability 1.13/g' configure.ac
 
 %build
+export CFLAGS="%{optflags} -Wno-deprecated-declarations"
 autoreconf -vif
 %configure \
     --disable-dependency-tracking \
@@ -57,14 +58,13 @@ autoreconf -vif
     --with-package-name="Fedora GStreamer-libav package" \
     --with-package-origin="http://negativo17.org" \
     --with-system-libav
-make %{?_smp_mflags} V=1
+make %{?_smp_mflags}
 
 %install
-%make_install V=1
+%make_install
 find %{buildroot} -name "*.la" -delete
 
 %files
-%{!?_licensedir:%global license %%doc}
 %license COPYING.LIB
 %doc AUTHORS ChangeLog NEWS README TODO
 %{_libdir}/gstreamer-1.0/libgstlibav.so
@@ -74,6 +74,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Wed Aug 16 2017 Simone Caronni <negativo17@gmail.com> - 1:1.10.4-1
+- Update to 1.10.4.
+
 * Thu Nov 10 2016 Simone Caronni <negativo17@gmail.com> - 1:1.4.5-3
 - Require compat-ffmpeg (2.8.8).
 
