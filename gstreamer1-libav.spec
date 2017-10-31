@@ -1,6 +1,6 @@
 Name:       gstreamer1-libav
 Version:    1.10.5
-Release:    1%{?dist}
+Release:    2%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
@@ -75,6 +75,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Tue Oct 31 2017 Simone Caronni <negativo17@gmail.com> - 1:1.10.5-2
+- Rebuild for ffmpeg 3.4 update
+
 * Sun Jun 25 2017 Simone Caronni <negativo17@gmail.com> - 1:1.10.5-1
 - Update to 1.10.5.
 
