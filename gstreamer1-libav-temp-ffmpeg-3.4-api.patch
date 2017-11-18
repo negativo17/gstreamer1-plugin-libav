@@ -1,0 +1,26 @@
+diff -Naur gst-libav-1.10.5/ext/libav/gstavviddec.c gst-libav-1.10.5.new/ext/libav/gstavviddec.c
+--- gst-libav-1.10.5/ext/libav/gstavviddec.c	2017-05-29 10:06:30.000000000 +0200
++++ gst-libav-1.10.5.new/ext/libav/gstavviddec.c	2017-11-18 09:13:18.269886215 +0100
+@@ -1338,8 +1338,20 @@
+    * See https://bugzilla.gnome.org/show_bug.cgi?id=726020
+    */
+   GST_VIDEO_DECODER_STREAM_UNLOCK (ffmpegdec);
+-  len = avcodec_decode_video2 (ffmpegdec->context,
+-      ffmpegdec->picture, have_data, &packet);
++  *have_data = 0;
++  if (size > 0) {
++    len = avcodec_send_packet(ffmpegdec->context, &packet);
++    if (len == AVERROR(EAGAIN)) {
++      len = 0;
++    } else {
++      len = size;
++    }
++    if (len >= 0) {
++      int result = avcodec_receive_frame(ffmpegdec->context, ffmpegdec->picture);
++      if (result == 0)
++        *have_data = 1;
++    }
++  }
+   GST_VIDEO_DECODER_STREAM_LOCK (ffmpegdec);
+ 
+   GST_DEBUG_OBJECT (ffmpegdec, "after decode: len %d, have_data %d",
