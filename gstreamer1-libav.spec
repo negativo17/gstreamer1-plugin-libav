@@ -1,12 +1,13 @@
 Name:       gstreamer1-libav
 Version:    1.12.3
-Release:    2%{?dist}
+Release:    3%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
 URL:        https://gstreamer.freedesktop.org/modules/gst-libav.html
 
 Source0:    http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
+Patch0:     %{name}-temp-ffmpeg-3.4-api.patch
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -47,6 +48,7 @@ plug-in.
 
 %prep
 %setup -q -n gst-libav-%{version}
+%patch0 -p1
 
 %build
 export CFLAGS="%{optflags} -Wno-deprecated-declarations"
@@ -75,6 +77,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Sat Nov 18 2017 Simone Caronni <negativo17@gmail.com> - 1:1.12.3-3
+- Temporary patch for FFMpeg 3.4 APIs.
+
 * Wed Oct 25 2017 Simone Caronni <negativo17@gmail.com> - 1:1.12.3-2
 - Rebuild for ffmpeg 3.4 update.
 
