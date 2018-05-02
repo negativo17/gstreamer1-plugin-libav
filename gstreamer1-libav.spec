@@ -1,6 +1,6 @@
 Name:       gstreamer1-libav
 Version:    1.12.4
-Release:    1%{?dist}
+Release:    2%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
@@ -14,13 +14,15 @@ BuildRequires:  automake
 BuildRequires:  bzip2-devel
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
+BuildRequires:  gtk-doc
 BuildRequires:  libtool
 BuildRequires:  orc-devel >= 0.4.16
-BuildRequires:  pkgconfig(libavfilter) >= 3.2
-BuildRequires:  pkgconfig(libavformat) >= 3.2
-BuildRequires:  pkgconfig(libavcodec) >= 3.2
-BuildRequires:  pkgconfig(libavutil) >= 3.2
-BuildRequires:  pkgconfig(libswscale) >= 3.2
+BuildRequires:  compat-ffmpeg-devel
+#BuildRequires:  pkgconfig(libavfilter) >= 3.2
+#BuildRequires:  pkgconfig(libavformat) >= 3.2
+#BuildRequires:  pkgconfig(libavcodec) >= 3.2
+#BuildRequires:  pkgconfig(libavutil) >= 3.2
+#BuildRequires:  pkgconfig(libswscale) >= 3.2
 
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
@@ -47,8 +49,7 @@ This package contains the development documentation for the GStreamer Libav
 plug-in.
 
 %prep
-%setup -q -n gst-libav-%{version}
-%patch0 -p1
+%autosetup -p1 -n gst-libav-%{version}
 
 %build
 export CFLAGS="%{optflags} -Wno-deprecated-declarations"
@@ -56,18 +57,18 @@ autoreconf -vif
 %configure \
     --disable-dependency-tracking \
     --disable-static \
+    --enable-gtk-doc \
     --enable-orc \
     --with-package-name="Fedora GStreamer-libav package" \
     --with-package-origin="http://negativo17.org" \
     --with-system-libav
-make %{?_smp_mflags}
+%make_build
 
 %install
 %make_install
 find %{buildroot} -name "*.la" -delete
 
 %files
-%{!?_licensedir:%global license %%doc}
 %license COPYING.LIB
 %doc AUTHORS ChangeLog NEWS README TODO
 %{_libdir}/gstreamer-1.0/libgstlibav.so
@@ -77,6 +78,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Wed May 02 2018 Simone Caronni <negativo17@gmail.com> - 1:1.12.4-2
+- Switch to comaptibility FFMPeg (3.4).
+
 * Tue Jan 09 2018 Simone Caronni <negativo17@gmail.com> - 1:1.12.4-1
 - Update to 1.12.4.
 
