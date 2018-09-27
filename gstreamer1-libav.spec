@@ -1,5 +1,5 @@
 Name:       gstreamer1-libav
-Version:    1.14.2
+Version:    1.14.3
 Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
@@ -12,6 +12,7 @@ Patch0:     %{name}-temp-ffmpeg-3.4-api.patch
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  bzip2-devel
+BuildRequires:  gcc-c++
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  gtk-doc
@@ -78,6 +79,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Wed Sep 26 2018 Simone Caronni <negativo17@gmail.com> - 1:1.14.3-1
+- Update to 1.14.3.
+
 * Thu Aug 30 2018 Simone Caronni <negativo17@gmail.com> - 1:1.14.2-1
 - Update to 1.14.2.
 
