@@ -1,5 +1,5 @@
 Name:       gstreamer1-libav
-Version:    1.14.4
+Version:    1.15.2
 Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
@@ -7,7 +7,6 @@ License:    LGPLv2+
 URL:        https://gstreamer.freedesktop.org/modules/gst-libav.html
 
 Source0:    http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
-Patch0:     %{name}-temp-ffmpeg-3.4-api.patch
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -18,12 +17,10 @@ BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  gtk-doc
 BuildRequires:  libtool
 BuildRequires:  orc-devel >= 0.4.16
-BuildRequires:  compat-ffmpeg-devel
-#BuildRequires:  pkgconfig(libavfilter) >= 3.2
-#BuildRequires:  pkgconfig(libavformat) >= 3.2
-#BuildRequires:  pkgconfig(libavcodec) >= 3.2
-#BuildRequires:  pkgconfig(libavutil) >= 3.2
-#BuildRequires:  pkgconfig(libswscale) >= 3.2
+BuildRequires:  pkgconfig(libavfilter)
+BuildRequires:  pkgconfig(libavformat)
+BuildRequires:  pkgconfig(libavcodec) >= 58
+BuildRequires:  pkgconfig(libavutil)
 
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
@@ -53,7 +50,7 @@ plug-in.
 %autosetup -p1 -n gst-libav-%{version}
 
 %build
-export CFLAGS="%{optflags} -Wno-deprecated-declarations"
+export CFLAGS="%{optflags} -Wno-error=attributes"
 autoreconf -vif
 %configure \
     --disable-dependency-tracking \
@@ -79,6 +76,10 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Thu Apr 04 2019 Simone Caronni <negativo17@gmail.com> - 1:1.15.2-1
+- Update to 1.15.2.
+- Trim changelog.
+
 * Sat Oct 20 2018 Simone Caronni <negativo17@gmail.com> - 1:1.14.4-1
 - Update to 1.14.4.
 
@@ -120,31 +121,3 @@ find %{buildroot} -name "*.la" -delete
 
 * Wed Apr 19 2017 Simone Caronni <negativo17@gmail.com> - 1:1.11.90-1
 - Update to 1.11.90.
-
-* Mon Dec 05 2016 Simone Caronni <negativo17@gmail.com> - 1:1.10.2-1
-- Update to 1.10.2.
-
-* Mon Nov 28 2016 Simone Caronni <negativo17@gmail.com> - 1:1.10.1-1
-- Update to 1.10.1.
-
-* Thu Nov 10 2016 Simone Caronni <negativo17@gmail.com> - 1:1.10.0-1
-- Update to 1.10.0.
-- Requires FFmpeg >= 3.2.
-
-* Wed Nov 09 2016 Simone Caronni <negativo17@gmail.com> - 1:1.9.2-2
-- Rebuild for FFmpeg update.
-
-* Thu Nov 03 2016 Simone Caronni <negativo17@gmail.com> - 1:1.9.2-1
-- Update to 1.9.2.
-
-* Wed Aug 17 2016 Simone Caronni <negativo17@gmail.com> - 1:1.9.1-1
-- Update to 1.9.1.
-
-* Mon Jul 25 2016 Simone Caronni <negativo17@gmail.com> - 1:1.8.2-3
-- Fix devel-docs requirements.
-
-* Thu Jul 21 2016 Simone Caronni <negativo17@gmail.com> - 1:1.8.2-2
-- Rebuild for FFMpeg 3.1.1.
-
-* Mon Jun 13 2016 Simone Caronni <negativo17@gmail.com> - 1:1.8.2-1
-- First build.
