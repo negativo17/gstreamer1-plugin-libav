@@ -1,6 +1,6 @@
 Name:       gstreamer1-libav
-Version:    1.10.4
-Release:    4%{?dist}
+Version:    1.14.4
+Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
@@ -12,17 +12,18 @@ Patch0:     %{name}-temp-ffmpeg-3.4-api.patch
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  bzip2-devel
+BuildRequires:  gcc-c++
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  gtk-doc
 BuildRequires:  libtool
 BuildRequires:  orc-devel >= 0.4.16
 BuildRequires:  compat-ffmpeg-devel
-#BuildRequires:  pkgconfig(libavfilter) >= 6
-#BuildRequires:  pkgconfig(libavformat) >= 57
-#BuildRequires:  pkgconfig(libavcodec) >= 57
-#BuildRequires:  pkgconfig(libavutil) >= 55
-#BuildRequires:  pkgconfig(libswscale) >= 4.6
+#BuildRequires:  pkgconfig(libavfilter) >= 3.2
+#BuildRequires:  pkgconfig(libavformat) >= 3.2
+#BuildRequires:  pkgconfig(libavcodec) >= 3.2
+#BuildRequires:  pkgconfig(libavutil) >= 3.2
+#BuildRequires:  pkgconfig(libswscale) >= 3.2
 
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
@@ -34,6 +35,7 @@ operate on media data.
 
 GStreamer Libav plug-in contains one plugin with a set of elements using the
 Libav library code. It contains many popular decoders and encoders.
+
 
 %package devel-docs
 Summary:    Development documentation for the GStreamer Libav plug-in
@@ -78,6 +80,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Mon Nov 11 2019 Simone Caronni <negativo17@gmail.com> - 1:1.14.4-1
+- Rebase to 1.14.4.
+
 * Wed May 02 2018 Simone Caronni <negativo17@gmail.com> - 1:1.10.4-4
 - Switch to comaptibility FFMPeg (3.4).
 
