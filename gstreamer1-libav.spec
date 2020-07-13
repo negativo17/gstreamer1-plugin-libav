@@ -1,6 +1,6 @@
 Name:       gstreamer1-libav
-Version:    1.14.4
-Release:    2%{?dist}
+Version:    1.14.5
+Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
@@ -80,6 +80,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Mon Jul 13 2020 Simone Caronni <negativo17@gmail.com> - 1:1.14.5-1
+- Update to 1.14.5.
+
 * Mon Jun 29 2020 Simone Caronni <negativo17@gmail.com> - 1:1.14.4-2
 - Rebuild for updated dependencies.
 
