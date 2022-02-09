@@ -1,12 +1,12 @@
 Name:       gstreamer1-libav
-Version:    1.19.3
+Version:    1.20.0
 Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
 URL:        https://gstreamer.freedesktop.org/modules/gst-libav.html
 
-Source0:    http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
+Source0:    https://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
 
 BuildRequires:  bzip2-devel
 BuildRequires:  gcc-c++
@@ -52,6 +52,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/gstreamer-1.0/libgstlibav.so
 
 %changelog
+* Wed Feb 09 2022 Simone Caronni <negativo17@gmail.com> - 1:1.20.0-1
+- Update to 1.20.0.
+
 * Mon Nov 15 2021 Simone Caronni <negativo17@gmail.com> - 1:1.19.3-1
 - Update to 1.19.3.
 
