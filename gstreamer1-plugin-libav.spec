@@ -1,6 +1,6 @@
-Name:       gstreamer1-libav
+Name:       gstreamer1-plugin-libav
 Version:    1.18.4
-Release:    1%{?dist}
+Release:    2%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
@@ -15,10 +15,15 @@ BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  libtool
 BuildRequires:  meson >= 0.48.0
 BuildRequires:  orc-devel >= 0.4.16
-BuildRequires:  pkgconfig(libavfilter)
-BuildRequires:  pkgconfig(libavformat)
+# FFMpeg 4.4.x:
+BuildRequires:  pkgconfig(libavfilter) >= 7
+BuildRequires:  pkgconfig(libavfilter) < 8
+BuildRequires:  pkgconfig(libavformat) >= 58
+BuildRequires:  pkgconfig(libavformat) < 59
 BuildRequires:  pkgconfig(libavcodec) >= 58
-BuildRequires:  pkgconfig(libavutil)
+BuildRequires:  pkgconfig(libavcodec) < 59
+BuildRequires:  pkgconfig(libavutil) >= 56
+BuildRequires:  pkgconfig(libavutil) < 57
 
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
@@ -52,6 +57,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/gstreamer-1.0/libgstlibav.so
 
 %changelog
+* Fri Feb 10 2023 Simone Caronni <negativo17@gmail.com> - 1:1.18.4-2
+- First build for el9.
+
 * Mon Apr 12 2021 Simone Caronni <negativo17@gmail.com> - 1:1.18.4-1
 - Update to 1.18.4.
 
@@ -67,13 +75,3 @@ find %{buildroot} -name "*.la" -delete
 
 * Tue Feb 11 2020 Simone Caronni <negativo17@gmail.com> - 1:1.16.2-1
 - Update to 1.16.2.
-
-* Wed Oct 09 2019 Simone Caronni <negativo17@gmail.com> - 1:1.16.1-1
-- Update to 1.16.1.
-
-* Tue Apr 30 2019 Simone Caronni <negativo17@gmail.com> - 1:1.16.0-1
-- Update to 1.16.0.
-
-* Thu Apr 04 2019 Simone Caronni <negativo17@gmail.com> - 1:1.15.2-1
-- Update to 1.15.2.
-- Trim changelog.
