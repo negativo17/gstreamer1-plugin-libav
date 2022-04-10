@@ -1,6 +1,6 @@
 Name:       gstreamer1-libav
 Version:    1.14.5
-Release:    1%{?dist}
+Release:    2%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
@@ -18,12 +18,14 @@ BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  gtk-doc
 BuildRequires:  libtool
 BuildRequires:  orc-devel >= 0.4.16
-BuildRequires:  compat-ffmpeg-devel
-#BuildRequires:  pkgconfig(libavfilter) >= 3.2
-#BuildRequires:  pkgconfig(libavformat) >= 3.2
-#BuildRequires:  pkgconfig(libavcodec) >= 3.2
-#BuildRequires:  pkgconfig(libavutil) >= 3.2
-#BuildRequires:  pkgconfig(libswscale) >= 3.2
+BuildRequires:  pkgconfig(libavfilter) >= 7
+BuildRequires:  pkgconfig(libavfilter) < 8
+BuildRequires:  pkgconfig(libavformat) >= 58
+BuildRequires:  pkgconfig(libavformat) < 59
+BuildRequires:  pkgconfig(libavcodec) >= 58
+BuildRequires:  pkgconfig(libavcodec) < 59
+BuildRequires:  pkgconfig(libavutil) >= 56
+BuildRequires:  pkgconfig(libavutil) < 57
 
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
@@ -80,6 +82,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Sun Apr 10 2022 Simone Caronni <negativo17@gmail.com> - 1:1.14.5-2
+- Rebuild for updated dependencies.
+
 * Mon Jul 13 2020 Simone Caronni <negativo17@gmail.com> - 1:1.14.5-1
 - Update to 1.14.5.
 
