@@ -54,6 +54,7 @@ find %{buildroot} -name "*.la" -delete
 %changelog
 * Fri Jul 22 2022 Simone Caronni <negativo17@gmail.com> - 1:1.20.3-1
 - Update to 1.20.3.
+- Trim changelog.
 
 * Fri Apr 08 2022 Simone Caronni <negativo17@gmail.com> - 1:1.20.0-2
 - Rebuild for updated dependencies.
@@ -75,23 +76,3 @@ find %{buildroot} -name "*.la" -delete
 
 * Thu Jan 14 2021 Simone Caronni <negativo17@gmail.com> - 1:1.18.2-1
 - Update to 1.18.2.
-
-* Sun Nov 01 2020 Simone Caronni <negativo17@gmail.com> - 1:1.18.1-1
-- Update to 1.18.1, rebase on Meson.
-- Trim changelog.
-
-* Mon Jun 29 2020 Simone Caronni <negativo17@gmail.com> - 1:1.16.2-2
-- Rebuild for updated dependencies.
-
-* Tue Feb 11 2020 Simone Caronni <negativo17@gmail.com> - 1:1.16.2-1
-- Update to 1.16.2.
-
-* Wed Oct 09 2019 Simone Caronni <negativo17@gmail.com> - 1:1.16.1-1
-- Update to 1.16.1.
-
-* Tue Apr 30 2019 Simone Caronni <negativo17@gmail.com> - 1:1.16.0-1
-- Update to 1.16.0.
-
-* Thu Apr 04 2019 Simone Caronni <negativo17@gmail.com> - 1:1.15.2-1
-- Update to 1.15.2.
-- Trim changelog.
