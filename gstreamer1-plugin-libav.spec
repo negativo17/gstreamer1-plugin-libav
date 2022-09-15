@@ -1,6 +1,6 @@
-Name:       gstreamer1-libav
+Name:       gstreamer1-plugin-libav
 Version:    1.20.3
-Release:    1%{?dist}
+Release:    2%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
@@ -19,6 +19,10 @@ BuildRequires:  pkgconfig(libavfilter)
 BuildRequires:  pkgconfig(libavformat)
 BuildRequires:  pkgconfig(libavcodec) >= 58
 BuildRequires:  pkgconfig(libavutil)
+
+Obsoletes:      gstreamer1-libav < 1:1.20.3-4
+Provides:       gstreamer1-libav = 1:%{version}-%{release}
+Provides:       gstreamer1-libav%{?_isa} = 1:%{version}-%{release}
 
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
@@ -52,6 +56,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/gstreamer-1.0/libgstlibav.so
 
 %changelog
+* Thu Sep 15 2022 Simone Caronni <negativo17@gmail.com> - 1:1.20.3-2
+- Rename to gstreamer1-plugin-libav.
+
 * Fri Jul 22 2022 Simone Caronni <negativo17@gmail.com> - 1:1.20.3-1
 - Update to 1.20.3.
 - Trim changelog.
