@@ -1,6 +1,6 @@
-Name:       gstreamer1-libav
+Name:       gstreamer1-plugin-libav
 Version:    1.16.1
-Release:    1%{?dist}
+Release:    2%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
@@ -17,10 +17,16 @@ BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  gtk-doc
 BuildRequires:  libtool
 BuildRequires:  orc-devel >= 0.4.16
-BuildRequires:  pkgconfig(libavfilter)
-BuildRequires:  pkgconfig(libavformat)
+# FFMpeg 4.4.x:
+BuildRequires:  pkgconfig(libavfilter) >= 7
+BuildRequires:  pkgconfig(libavfilter) < 8
+BuildRequires:  pkgconfig(libavformat) >= 58
+BuildRequires:  pkgconfig(libavformat) < 59
 BuildRequires:  pkgconfig(libavcodec) >= 58
-BuildRequires:  pkgconfig(libavutil)
+BuildRequires:  pkgconfig(libavcodec) < 59
+BuildRequires:  pkgconfig(libavutil) >= 56
+BuildRequires:  pkgconfig(libavutil) < 57
+BuildRequires:  python3
 
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
@@ -58,7 +64,7 @@ autoreconf -vif
     --enable-gtk-doc \
     --enable-orc \
     --with-package-name="Fedora GStreamer-libav package" \
-    --with-package-origin="http://negativo17.org" \
+    --with-package-origin="https://negativo17.org" \
     --with-system-libav
 %make_build
 
@@ -76,54 +82,8 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Tue Feb 07 2023 Simone Caronni <negativo17@gmail.com> - 1:1.16.1-2
+- First build for el8.
+
 * Wed Oct 09 2019 Simone Caronni <negativo17@gmail.com> - 1:1.16.1-1
 - Update to 1.16.1.
-
-* Tue Apr 30 2019 Simone Caronni <negativo17@gmail.com> - 1:1.16.0-1
-- Update to 1.16.0.
-
-* Thu Apr 04 2019 Simone Caronni <negativo17@gmail.com> - 1:1.15.2-1
-- Update to 1.15.2.
-- Trim changelog.
-
-* Sat Oct 20 2018 Simone Caronni <negativo17@gmail.com> - 1:1.14.4-1
-- Update to 1.14.4.
-
-* Wed Sep 26 2018 Simone Caronni <negativo17@gmail.com> - 1:1.14.3-1
-- Update to 1.14.3.
-
-* Thu Aug 30 2018 Simone Caronni <negativo17@gmail.com> - 1:1.14.2-1
-- Update to 1.14.2.
-
-* Thu Jun 14 2018 Simone Caronni <negativo17@gmail.com> - 1:1.14.1-1
-- Update to 1.14.1.
-
-* Wed May 02 2018 Simone Caronni <negativo17@gmail.com> - 1:1.14.0-1
-- Update to 1.14.0.
-
-* Wed May 02 2018 Simone Caronni <negativo17@gmail.com> - 1:1.12.4-2
-- Switch to comaptibility FFMPeg (3.4).
-
-* Tue Jan 09 2018 Simone Caronni <negativo17@gmail.com> - 1:1.12.4-1
-- Update to 1.12.4.
-
-* Sat Nov 18 2017 Simone Caronni <negativo17@gmail.com> - 1:1.12.3-3
-- Temporary patch for FFMpeg 3.4 APIs.
-
-* Wed Oct 25 2017 Simone Caronni <negativo17@gmail.com> - 1:1.12.3-2
-- Rebuild for ffmpeg 3.4 update.
-
-* Mon Oct 23 2017 Simone Caronni <negativo17@gmail.com> - 1:1.12.3-1
-- Update to 1.12.3.
-
-* Thu Jul 20 2017 Simone Caronni <negativo17@gmail.com> - 1:1.12.2-1
-- Update to 1.12.2.
-
-* Sat Jun 24 2017 Simone Caronni <negativo17@gmail.com> - 1:1.12.1-1
-- Update to 1.12.1.
-
-* Sat May 13 2017 Simone Caronni <negativo17@gmail.com> - 1:1.12.0-1
-- Update to 1.12.0.
-
-* Wed Apr 19 2017 Simone Caronni <negativo17@gmail.com> - 1:1.11.90-1
-- Update to 1.11.90.
