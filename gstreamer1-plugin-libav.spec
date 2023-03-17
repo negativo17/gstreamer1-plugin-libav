@@ -1,5 +1,5 @@
 Name:       gstreamer1-plugin-libav
-Version:    1.20.5
+Version:    1.22.1
 Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
@@ -13,7 +13,7 @@ BuildRequires:  gcc-c++
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  libtool
-BuildRequires:  meson >= 0.48.0
+BuildRequires:  meson >= 0.62
 BuildRequires:  orc-devel >= 0.4.16
 BuildRequires:  pkgconfig(libavfilter)
 BuildRequires:  pkgconfig(libavformat)
@@ -56,6 +56,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/gstreamer-1.0/libgstlibav.so
 
 %changelog
+* Fri Mar 17 2023 Simone Caronni <negativo17@gmail.com> - 1:1.22.1-1
+- Update to 1.22.1.
+
 * Fri Jan 20 2023 Simone Caronni <negativo17@gmail.com> - 1:1.20.5-1
 - Update to 1.20.5.
 
