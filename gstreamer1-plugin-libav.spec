@@ -1,29 +1,28 @@
 Name:       gstreamer1-plugin-libav
-Version:    1.18.4
-Release:    2%{?dist}
+Version:    1.22.1
+Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
 URL:        https://gstreamer.freedesktop.org/modules/gst-libav.html
 
-Source0:    http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
+Source0:    https://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
 
 BuildRequires:  bzip2-devel
 BuildRequires:  gcc-c++
 BuildRequires:  gstreamer1-devel >= %{version}
 BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  libtool
-BuildRequires:  meson >= 0.48.0
+BuildRequires:  meson >= 0.62
 BuildRequires:  orc-devel >= 0.4.16
-# FFMpeg 4.4.x:
-BuildRequires:  pkgconfig(libavfilter) >= 7
-BuildRequires:  pkgconfig(libavfilter) < 8
-BuildRequires:  pkgconfig(libavformat) >= 58
-BuildRequires:  pkgconfig(libavformat) < 59
+BuildRequires:  pkgconfig(libavfilter)
+BuildRequires:  pkgconfig(libavformat)
 BuildRequires:  pkgconfig(libavcodec) >= 58
-BuildRequires:  pkgconfig(libavcodec) < 59
-BuildRequires:  pkgconfig(libavutil) >= 56
-BuildRequires:  pkgconfig(libavutil) < 57
+BuildRequires:  pkgconfig(libavutil)
+
+Obsoletes:      gstreamer1-libav < 1:1.20.3-4
+Provides:       gstreamer1-libav = 1:%{version}-%{release}
+Provides:       gstreamer1-libav%{?_isa} = 1:%{version}-%{release}
 
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
@@ -53,10 +52,13 @@ find %{buildroot} -name "*.la" -delete
 
 %files
 %license COPYING
-%doc AUTHORS ChangeLog NEWS README.md
+%doc AUTHORS NEWS README.md
 %{_libdir}/gstreamer-1.0/libgstlibav.so
 
 %changelog
+* Thu Nov 16 2023 Simone Caronni <negativo17@gmail.com> - 1:1.22.1-1
+- Update to 1.22.1.
+
 * Fri Feb 10 2023 Simone Caronni <negativo17@gmail.com> - 1:1.18.4-2
 - First build for el9.
 
