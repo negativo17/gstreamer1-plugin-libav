@@ -1,12 +1,13 @@
 Name:       gstreamer1-plugin-libav
 Version:    1.16.1
-Release:    2%{?dist}
+Release:    3%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
 License:    LGPLv2+
 URL:        https://gstreamer.freedesktop.org/modules/gst-libav.html
 
 Source0:    http://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
+Patch0:     https://gitlab.freedesktop.org/gstreamer/gst-libav/-/commit/801dc93b790e9a96aa437a3f344214170c0bd540.diff
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -17,15 +18,10 @@ BuildRequires:  gstreamer1-plugins-base-devel >= %{version}
 BuildRequires:  gtk-doc
 BuildRequires:  libtool
 BuildRequires:  orc-devel >= 0.4.16
-# FFMpeg 4.4.x:
-BuildRequires:  pkgconfig(libavfilter) >= 7
-BuildRequires:  pkgconfig(libavfilter) < 8
-BuildRequires:  pkgconfig(libavformat) >= 58
-BuildRequires:  pkgconfig(libavformat) < 59
+BuildRequires:  pkgconfig(libavfilter)
+BuildRequires:  pkgconfig(libavformat)
 BuildRequires:  pkgconfig(libavcodec) >= 58
-BuildRequires:  pkgconfig(libavcodec) < 59
-BuildRequires:  pkgconfig(libavutil) >= 56
-BuildRequires:  pkgconfig(libavutil) < 57
+BuildRequires:  pkgconfig(libavutil)
 BuildRequires:  python3
 
 %ifarch %{ix86} x86_64
@@ -82,6 +78,9 @@ find %{buildroot} -name "*.la" -delete
 %doc %{_datadir}/gtk-doc
 
 %changelog
+* Mon Jun 17 2024 Simone Caronni <negativo17@gmail.com> - 1:1.16.1-3
+- Switch to FFmpeg 5+.
+
 * Tue Feb 07 2023 Simone Caronni <negativo17@gmail.com> - 1:1.16.1-2
 - First build for el8.
 
