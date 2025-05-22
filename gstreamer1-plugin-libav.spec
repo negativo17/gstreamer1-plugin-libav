@@ -1,5 +1,5 @@
 Name:       gstreamer1-plugin-libav
-Version:    1.22.1
+Version:    1.22.11
 Release:    1%{?dist}
 Epoch:      1
 Summary:    GStreamer Libav plug-in
@@ -56,6 +56,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/gstreamer-1.0/libgstlibav.so
 
 %changelog
+* Thu May 22 2025 Simone Caronni <negativo17@gmail.com> - 1:1.22.11-1
+- Update to 1.22.11.
+
 * Thu Nov 16 2023 Simone Caronni <negativo17@gmail.com> - 1:1.22.1-1
 - Update to 1.22.1.
 
