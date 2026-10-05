@@ -7,6 +7,8 @@ License:    LGPLv2+
 URL:        https://gstreamer.freedesktop.org/modules/gst-libav.html
 
 Source0:    https://gstreamer.freedesktop.org/src/gst-libav/gst-libav-%{version}.tar.xz
+# Backported from the main branch, see the patch header for the commits
+Patch0:     gst-libav-ffmpeg7.patch
 
 BuildRequires:  bzip2-devel
 BuildRequires:  gcc-c++
@@ -58,6 +60,7 @@ find %{buildroot} -name "*.la" -delete
 %changelog
 * Mon Oct 05 2026 Simone Caronni <negativo17@gmail.com> - 1:1.22.12-2
 - Rebuild for updated dependencies.
+- Add FFmpeg 7 support.
 
 * Fri May 23 2025 Simone Caronni <negativo17@gmail.com> - 1:1.22.12-1
 - Update to 1.22.12.
